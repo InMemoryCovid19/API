@@ -1,4 +1,5 @@
 certs
+.DS_Store
 # Logs
 logs
 *.log
@@ -72,6 +73,7 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
+config/.env
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

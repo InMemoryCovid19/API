@@ -1,6 +1,6 @@
 module.exports = {
 	env: process.env.NODE_ENV || 'development',
-	port: process.env.PORT || 8080,
+	port: process.env.PORT || 3000,
 	trustProxy: process.env.TRUST_PROXY || 'no',
 	secureMode: process.env.SECURE_MODE || false,
 	mongoURL: process.env.MONGOLAB_URL || 'mongodb://',
