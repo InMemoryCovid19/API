@@ -1,0 +1,17 @@
+module.exports = {
+	env: process.env.NODE_ENV || 'development',
+	port: process.env.PORT || 8080,
+	trustProxy: process.env.TRUST_PROXY || 'no',
+	secureMode: process.env.SECURE_MODE || false,
+	mongoURL: process.env.MONGOLAB_URL || 'mongodb://',
+    logMongoURL: process.env.LOG_MONGOLAB_URL || 'mongodb://',
+    noFrontendCaching: process.env.NO_CACHE || 'yes',
+    frontendCacheExpiry: process.env.FRONTEND_CACHE_EXPIRY || '90',
+    rateLimit: process.env.RATE_LIMIT || '1800',
+    rateLimitExpiry: process.env.RATE_LIMIT_EXPIRY || '3600000',
+    letsencryptSSLVerificationURL: process.env.LETSENCRYPT_VERIFICATION_URL || '/.well-known/acme-challenge/xvArhQBSilF4V30dGUagNAZ96ASipB0b0ex0kXn0za8',
+    letsencryptSSLVerificationBody: process.env.LETSENCRYPT_VERIFICATION_BODY || 'xvArhQBSilF4V30dGUagNAZ96ASipB0b0ex0kXn0za8._v6aFbaRYWeOmSebtlD-X4Ixf5tPsyULMsXM8HjsK-Q',
+    maxContentLength: process.env.MAX_CONTENT_LENGTH || '9999',
+    enforceSSL: process.env.ENFORCE_SSL || 'no',
+    gitOAuthToken: process.env.GIT_OAUTH_TOKEN || '',
+};
