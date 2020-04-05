@@ -9,7 +9,8 @@ const me = require("./package.json");
 const router = express.Router();
 const url = require("url");
 const verifyPostData = require("./services/githook");
-const pages = require("./controllers/pages")
+const pages = require("./controllers/pages");
+const repos = require("./controllers/repos");
 
 // router.use(helmet());
 router.use(cors());
@@ -48,8 +49,17 @@ router.post("/formResponse", verifyPostData, function (req, res) {
 });
 
 router.get("/enablePages", async function(req, res){
+  try{
 const {statusCode, status, html_url} = await pages.enablePages();
 res.status(statusCode).json({status, html_url})
+  } catch(error){
+    res.status(500).json({status: "fail", error: JSON.stringify(error)})
+  }
+});
+
+router.get("/createRepo", async function(req, res){
+  await repos.createRepo();
+  res.status(200)
 })
 
 module.exports = router;
