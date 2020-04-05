@@ -8,18 +8,8 @@ const hpp = require("hpp");
 const me = require("./package.json");
 const router = express.Router();
 const url = require("url");
-
-router._sanitizeRequestUrl = function (req) {
-  const requestUrl = url.format({
-    protocol: req.protocol,
-    host: req.hostname,
-    pathname: req.originalUrl || req.url,
-    query: req.query,
-    params: req.params,
-  });
-
-  return requestUrl.replace(/(password=).*?(&|$)/gi, "$1<hidden>$2");
-};
+const verifyPostData = require("./services/githook");
+const pages = require("./controllers/pages")
 
 // router.use(helmet());
 router.use(cors());
@@ -41,7 +31,7 @@ function removeFrameguard(req, res, next) {
   res.removeHeader("X-Frame-Options");
   next();
 }
-router.post("/formResponse", removeFrameguard, function (req, res) {
+router.post("/formResponse", verifyPostData, function (req, res) {
   const requestId = fnv.hash(Date.now() + "" + req.ip, 128).str();
   res.set("X-Request-Id", requestId);
   console.log("POST", req.query);
@@ -56,5 +46,10 @@ router.post("/formResponse", removeFrameguard, function (req, res) {
     res.status(200).json({ fields, files });
   });
 });
+
+router.get("/enablePages", async function(req, res){
+const {statusCode, status, html_url} = await pages.enablePages();
+res.status(statusCode).json({status, html_url})
+})
 
 module.exports = router;
