@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TributeFromCovid-19/API.git"
+    "url": "git+https://github.com/InMemoryCovid19/API.git"
   },
   "author": "Leslie Pajuelo",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/TributeFromCovid-19/API/issues"
+    "url": "https://github.com/InMemoryCovid19/API/issues"
   },
-  "homepage": "https://github.com/TributeFromCovid-19/API#readme",
+  "homepage": "https://github.com/InMemoryCovid19/API#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",

@@ -1,7 +1,7 @@
 const config = require('../config');
 const ghGot = require('gh-got');
 
-const url = "/repos/TributeFromCovid-19/StartHere/pages";
+const url = "/repos/InMemoryCovid19/StartHere/pages";
 
 const pagesInfo = async function() {
 	
