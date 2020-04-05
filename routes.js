@@ -61,7 +61,7 @@ res.status(statusCode).json({status, html_url})
 
 router.get("/createRepo", async function(req, res){
   try {
-    const {statusCode, status, html_url} = await repos.createRepo();
+    const {statusCode, status, html_url} = await repos.createRepo(req.query);
     res.status(statusCode).json({status, html_url})
   } catch(error){
     res.status(500).json({status: "fail", error: JSON.stringify(error)})
@@ -82,7 +82,7 @@ router.delete("/createRepo", async function(req, res){
 router.get('/testPug', async function(req, res){
   try {
     const html = await createHTML.compile(req.query);
-    const report = await 
+    const report = await sendHTML.send('StartHere',html);
     res.status(200).send(html)
   } catch(error){
     console.log(error)
