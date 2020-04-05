@@ -11,6 +11,8 @@ const url = require("url");
 const verifyPostData = require("./services/githook");
 const pages = require("./controllers/pages");
 const repos = require("./controllers/repos");
+const createHTML = require("./controllers/createHTML");
+const sendHTML = require("./controllers/sendHTML");
 
 // router.use(helmet());
 router.use(cors());
@@ -75,6 +77,16 @@ router.delete("/createRepo", async function(req, res){
     res.status(500).json({status: "fail", error: JSON.stringify(error)})
   }
   
+})
+
+router.get('/testPug', async function(req, res){
+  try {
+    const html = await createHTML.compile(req.query);
+    const report = await 
+    res.status(200).send(html)
+  } catch(error){
+    console.log(error)
+  }
 })
 
 module.exports = router;

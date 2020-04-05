@@ -1,0 +1,10 @@
+doctype html
+html(lang="en")
+    head
+    title=#{name}
+    body
+    div(id="header_wrap" class="outer")
+        div(<h1 id="project_title">)#{name}
+        div(<h1 id="project_tagline">)#{birthdate} to #{deathdate}
+    div(id="main_content_wrap" class="outer")
+        section(id="main_content" class="inner")#{words}
