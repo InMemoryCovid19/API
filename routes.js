@@ -58,8 +58,23 @@ res.status(statusCode).json({status, html_url})
 });
 
 router.get("/createRepo", async function(req, res){
-  await repos.createRepo();
-  res.status(200)
+  try {
+    const {statusCode, status, html_url} = await repos.createRepo();
+    res.status(statusCode).json({status, html_url})
+  } catch(error){
+    res.status(500).json({status: "fail", error: JSON.stringify(error)})
+  }
+  
+})  
+
+router.delete("/createRepo", async function(req, res){
+  try {
+    const {statusCode, status, html_url} = await repos.deleteRepo();
+    res.status(statusCode)
+  } catch(error){
+    res.status(500).json({status: "fail", error: JSON.stringify(error)})
+  }
+  
 })
 
 module.exports = router;
