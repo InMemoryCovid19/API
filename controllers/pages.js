@@ -52,6 +52,7 @@ exports.enablePages = async function (newRepoName) {
         html_url: newRepoName,
       };
     } else {
+      console.log('enable pages, count', response.statusCode, response.body,html_url)
       return {
         statusCode: 201,
         status: response.body.status,
@@ -59,6 +60,6 @@ exports.enablePages = async function (newRepoName) {
       };
     }
   } catch (error) {
-    console.log("routes enablePages", error.response);
+    console.log("routes enablePages", error);
   }
 };

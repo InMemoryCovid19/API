@@ -9,9 +9,11 @@ const me = require("./package.json");
 const router = express.Router();
 const url = require("url");
 const verifyPostData = require("./services/githook");
+
+const createHTML = require("./controllers/createHTML");
+const deleteRepos = require("./controllers/delete");
 const pages = require("./controllers/pages");
 const repos = require("./controllers/repos");
-const createHTML = require("./controllers/createHTML");
 const sendHTML = require("./controllers/sendHTML");
 
 // router.use(helmet());
@@ -69,21 +71,24 @@ router.get("/createRepo", async function(req, res){
   
 })  
 
-router.delete("/createRepo", async function(req, res){
-  try {
-    const {statusCode, status, html_url} = await repos.deleteRepo();
-    res.status(statusCode)
-  } catch(error){
-    res.status(500).json({status: "fail", error: JSON.stringify(error)})
-  }
+router.delete("/deleteRepo/:id", async function(req, res){
   
-})
+});
+
+router.get("/deleteRepos", async function(req, res){
+  try {
+    const report = await deleteRepos.generatedRepos(req.params.filterWord);
+    res.status(200).json(report)
+  } catch(error){
+    console.log(error)
+  }
+});
 
 router.get('/testPug', async function(req, res){
   try {
     const html = await createHTML.compile(req.query);
-    const report = await sendHTML.send('StartHere',html);
-    res.status(200).send(html)
+    const report = await sendHTML.send('req.query.repo',html);
+    res.status(200).json(report)
   } catch(error){
     console.log(error)
   }

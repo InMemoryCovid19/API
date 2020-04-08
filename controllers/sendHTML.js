@@ -22,10 +22,10 @@ exports.send = async function (newRepoName,html) {
       body: createBody,
       token: config.github_token,
     });
-    console.log('put body', response.body)
-    return response.body;
+    console.log('put body', response.body.content.sha)
+    return response.body.content.sha;
   } catch (error) {
-    console.log("pageInfo response", error, error.statusCode);
-    console.log("pageInfo.response.body", error.response.body);
+    console.log("send response", error, error.statusCode);
+    console.log("send.response.body", error.response.body);
   }
 };
